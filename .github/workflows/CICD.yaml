@@ -415,8 +415,31 @@ jobs:
           deliveryTarget: ${{ matrix.deliveryTarget }}
           artifacts: '.artifacts'
 
+  CustomJob-CreateBuildTag:
+    needs: [ Initialization, Build ]
+    if: (!cancelled()) && needs.Build.result == 'success' && github.ref_name == 'main'
+    runs-on: [ windows-latest ]
+    name: Tag successful main build
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Create lightweight build tag
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $tag = "build-$(Get-Date -Format 'yyyyMMdd-HHmmss')-${env:GITHUB_RUN_NUMBER}"
+          Write-Host "Tagging commit $env:GITHUB_SHA as $tag"
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git tag $tag
+          git push origin $tag
+          Add-Content -Encoding UTF8 -Path $env:GITHUB_STEP_SUMMARY -Value "Tagged build as ``$tag``"
+
   PostProcess:
-    needs: [ Initialization, Build, BuildPP, Deploy, Deliver, DeployALDoc, CodeAnalysisUpload ]
+    needs: [ Initialization, Build, BuildPP, Deploy, Deliver, DeployALDoc, CodeAnalysisUpload, CustomJob-CreateBuildTag ]
     if: (!cancelled())
     runs-on: [ windows-latest ]
     steps:
