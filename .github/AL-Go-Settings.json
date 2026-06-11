@@ -1,17 +1,22 @@
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v9.0/.Modules/settings.schema.json",
+  "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go/6ce99a8c1b840818da308fae257c14ed6bf76c70/Actions/.Modules/settings.schema.json",
   "type": "PTE",
   "templateUrl": "https://github.com/microsoft/AL-Go-PTE@preview",
   "country": "dk",
   "runs-on": "windows-latest",
   "UpdateALGoSystemFilesEnvironment": "",
-  "buildModes": [ "Default" ],
+  "buildModes": [
+    "Default"
+  ],
   "ConditionalSettings": [
     {
-      "triggers": [ "pull_request" ],
+      "triggers": [
+        "pull_request"
+      ],
       "settings": {
         "doNotPublishApps": true
       }
     }
-  ]
+  ],
+  "templateSha": "935eb86c6df0c56a8dec18044cb625c70ae25b2a"
 }
