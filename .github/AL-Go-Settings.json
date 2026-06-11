@@ -18,5 +18,13 @@
       }
     }
   ],
-  "templateSha": "935eb86c6df0c56a8dec18044cb625c70ae25b2a"
+  "templateSha": "935eb86c6df0c56a8dec18044cb625c70ae25b2a",
+  "customALGoFiles": {
+    "filesToInclude": [
+      {
+        "sourceFolder": ".github",
+        "filter": "copilot-instructions.md"
+      }
+    ]
+  }
 }
