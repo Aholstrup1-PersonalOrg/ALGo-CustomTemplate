@@ -440,4 +440,4 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git tag $tag
           git push origin $tag
-          Add-Content -Encoding UTF8 -Path $env:GITHUB_STEP_SUMMARY -Value "Tagged build as ``$tag``"
+          Add-Content -Encoding UTF8 -Path $env:GITHUB_STEP_SUMMARY -Value "Build tagged as ``$tag``"
