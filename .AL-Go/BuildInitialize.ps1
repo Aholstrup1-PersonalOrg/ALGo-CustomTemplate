@@ -1,12 +1,5 @@
 # BuildInitialize hook for ALGo-CustomTemplate
-#
 # Runs at the very start of each build in the consuming repos.
-# Hook contract was added in microsoft/AL-Go#2249 (replaces older
-# BcContainerHelper override patterns). Anything written to the host
-# console here shows up in the CI/CD log of every downstream repo.
-#
-# Demo use: prove that customisations from the template (logic, not
-# just settings) actually propagate to ALGo-EndRepo-A/B/C.
 
 $ErrorActionPreference = 'Stop'
 
